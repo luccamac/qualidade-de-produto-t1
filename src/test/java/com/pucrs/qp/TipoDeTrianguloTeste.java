@@ -3,6 +3,7 @@ package com.pucrs.qp;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
@@ -10,11 +11,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TipoDeTrianguloTeste {
 
 	@ParameterizedTest
-	@DisplayName("Combinações de Triângulos")
+	@DisplayName("Combinações de triângulos")
 	@MethodSource("criaCombinacoes")
 	public void test_tipo_de_triangulo(CombinacaoDeLados combinacaoDeLados) {
 		// Given
@@ -31,6 +33,7 @@ public class TipoDeTrianguloTeste {
 	}
 
 	@Test
+	@DisplayName("Variantes de três")
 	public void variantes_de_tres() {
 		// Given
 		int a = 6;
@@ -46,73 +49,91 @@ public class TipoDeTrianguloTeste {
 	}
 
 	@Test
+	@DisplayName("Um dos lados com valor zero")
 	public void valor_zero() {
 		// Given
 		int a = 8;
 		int b = 0;
 		int c = 9;
 
-		// When
-		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
-
 		// Then
-		then(tipoDeTrianguloAtual).isNull();
+		assertThrows(
+				CombinacaoInvalida.class,
+				() -> TipoDeTriangulo.calculaTipo(a, b, c)
+		);
 	}
 
 	@Test
+	@DisplayName("Todos os lados zero")
 	public void todos_zero() {
 		// Given
 		int a = 0;
 		int b = 0;
 		int c = 0;
 
-		// When
-		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
-
 		// Then
-		then(tipoDeTrianguloAtual).isNull();
+		assertThrows(
+				CombinacaoInvalida.class,
+				() -> TipoDeTriangulo.calculaTipo(a, b, c)
+		);
 	}
 
 	@Test
+	@DisplayName("Um dos lados menor que zero")
 	public void valor_menor_que_zero() {
 		// Given
 		int a = -8;
 		int b = 0;
 		int c = 9;
 
-		// When
-		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
-
 		// Then
-		then(tipoDeTrianguloAtual).isNull();
+		assertThrows(
+				CombinacaoInvalida.class,
+				() -> TipoDeTriangulo.calculaTipo(a, b, c)
+		);
 	}
 
 	@Test
+	@DisplayName("Linha longa")
 	public void linha_longa() {
 		// Given
 		int a = 1;
 		int b = 2;
 		int c = 8;
 
-		// When
-		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
-
 		// Then
-		then(tipoDeTrianguloAtual).isNull();
+		assertThrows(
+				CombinacaoInvalida.class,
+				() -> TipoDeTriangulo.calculaTipo(a, b, c)
+		);
 	}
 
 	@Test
+	@DisplayName("Numeros reais nos lados")
 	public void numeros_reais() {
 		// Given
 		int a = 1 / 2;
 		int b = 3 / 4;
 		int c = 5;
 
+		// Then
+		assertThrows(
+				CombinacaoInvalida.class,
+				() -> TipoDeTriangulo.calculaTipo(a, b, c)
+		);
+	}
+
+	@ParameterizedTest
+	@EnumSource(TipoDeTriangulo.class)
+	public void avalia_tipo_nome(TipoDeTriangulo tipoTrianguloEsperado) {
+		// Given
+		String nomeTriangulo = tipoTrianguloEsperado.getNome();
+
 		// When
-		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
+		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.avaliaTipo(nomeTriangulo);
 
 		// Then
-		then(tipoDeTrianguloAtual).isNull();
+		then(tipoDeTrianguloAtual).isEqualTo(tipoTrianguloEsperado);
 	}
 
 	private static List<CombinacaoDeLados> criaCombinacoesEquilatero() {

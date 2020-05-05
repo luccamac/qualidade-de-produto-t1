@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
     id 'com.adarshr.test-logger' version '2.0.0'
 }
 
@@ -14,9 +15,32 @@ repositories {
 
 test {
     useJUnitPlatform()
+    exclude 'com/pucrs/qp/CucumberRunner.class'
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestReport {
+    reports {
+        csv.enabled false
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        html.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.html")
+    }
+    finalizedBy jacocoTestCoverageVerification
+}
+
+test.finalizedBy jacocoTestReport
+
+task integrationTest(type: Test) {
+    include 'com/pucrs/qp/CucumberRunner.class'
 }
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
     testImplementation("org.assertj:assertj-core:3.15.0")
+    testImplementation("io.cucumber:cucumber-junit:5.5.0")
+    testImplementation("io.cucumber:cucumber-java:5.5.0")
 }
