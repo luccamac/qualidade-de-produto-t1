@@ -1,4 +1,4 @@
-# T1: Qualidade de Produto
+# T1: Qualidade de Produto [![Build Status](https://travis-ci.com/luccamac/qualidade-de-produto-t1.svg?branch=master)](https://travis-ci.com/luccamac/qualidade-de-produto-t1)
 
 ### Stack:
 - **Java:** Tecnologia sugerida.
