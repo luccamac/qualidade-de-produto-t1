@@ -6,6 +6,10 @@ jdk: oraclejdk11
 before_install:
   - chmod +x gradlew
 script:
+  - echo "Iniciando build."
   - ./gradlew build -x test
+  - echo "Finalizado o build."
 after_script:
+  - echo "Iniciando testes."
   - ./gradlew test
+  - echo "Testes finalizados."
