@@ -29,3 +29,6 @@
 /build/classes/java/main/com/pucrs/qp/Triangulos.class
 /build/classes/java/test/com/pucrs/qp/TriangulosTeste.class
 /out/production/classes/com/pucrs/qp/TipoDeTriangulo.class
+/.gradle/checksums/sha1-checksums.bin
+/.gradle/checksums/md5-checksums.bin
+/out/test/classes/com/pucrs/qp/CombinacaoDeLados.class
