@@ -6,6 +6,6 @@ jdk: oraclejdk11
 before_install:
   - chmod +x gradlew
 script:
-  - ./gradlew build
+  - ./gradlew build -x test
 after_script:
   - ./gradlew test
