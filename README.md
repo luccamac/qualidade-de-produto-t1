@@ -23,7 +23,7 @@ Feature file localizado no projeto.
 - **AssertJ:** Biblioteca que implementa asserções mais "fluentes", nesse caso foi utilizada a versão BDD.
 - **Jacoco:** Ao fim dos testes, é gerado um relatório que detalhe a cobertura de testes da aplicação.
 
-![Jacoco](imagens/jacoco.PNG)
+![Jacoco](imagens/jacoco.png)
 
 
 
