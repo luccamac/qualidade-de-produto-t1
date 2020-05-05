@@ -13,6 +13,6 @@ after_script:
   - echo "Iniciando testes."
   - ./gradlew test
   - echo "Testes finalizados."
-  - echo "Iniciando testes de integração."
+  - echo "Iniciando testes de integracaoo."
   - ./gradlew integrationTest
-  - echo "Testes de integração finalizados."
+  - echo "Testes de integracaoo finalizados."

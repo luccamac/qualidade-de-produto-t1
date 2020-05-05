@@ -36,6 +36,11 @@ test.finalizedBy jacocoTestReport
 
 task integrationTest(type: Test) {
     include 'com/pucrs/qp/CucumberRunner.class'
+
+    testlogger {
+        showStandardStreams = "true"
+    }
+
 }
 
 dependencies {
