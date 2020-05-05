@@ -30,76 +30,19 @@ public class TipoDeTrianguloTeste {
 		then(tipoDeTrianguloAtual).isEqualTo(tipoDeTrianguloEsperado);
 	}
 
-	static Stream<CombinacaoDeLados> criaCombinacoes() {
-		List<CombinacaoDeLados> todasCombinacoes = new ArrayList<>();
+	@Test
+	public void variantes_de_tres() {
+		// Given
+		int a = 6;
+		int b = 7;
+		int c = 6;
+		TipoDeTriangulo tipoDeTrianguloEsperado = TipoDeTriangulo.ISOSCELES;
 
-		List<CombinacaoDeLados> equilatero = criaCombinacoesEquilatero();
-		todasCombinacoes.addAll(equilatero);
+		// When
+		TipoDeTriangulo tipoDeTrianguloAtual = TipoDeTriangulo.calculaTipo(a, b, c);
 
-		List<CombinacaoDeLados> escaleno = criaCombinacoesEscaleno();
-		todasCombinacoes.addAll(escaleno);
-
-		List<CombinacaoDeLados> isosceles = criaCombinacoesIsosceles();
-		todasCombinacoes.addAll(isosceles);
-
-		return todasCombinacoes.stream();
-	}
-
-	private static List<CombinacaoDeLados> criaCombinacoesEscaleno() {
-		List<CombinacaoDeLados> combinacoesEscaleno = new ArrayList<>();
-
-		int a = 2;
-		int b = 3;
-		int c = 4;
-
-		while (combinacoesEscaleno.size() != 15) {
-			combinacoesEscaleno.add(
-					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.ESCALENO)
-			);
-			a++;
-			b++;
-			c++;
-		}
-
-		return combinacoesEscaleno;
-	}
-
-	private static List<CombinacaoDeLados> criaCombinacoesEquilatero() {
-		List<CombinacaoDeLados> combinacoesEquilatero = new ArrayList<>();
-
-		int a = 1;
-		int b = 1;
-		int c = 1;
-
-		while (combinacoesEquilatero.size() != 15) {
-			combinacoesEquilatero.add(
-					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.EQUILATERO)
-			);
-			a++;
-			b++;
-			c++;
-		}
-
-		return combinacoesEquilatero;
-	}
-
-	private static List<CombinacaoDeLados> criaCombinacoesIsosceles() {
-		List<CombinacaoDeLados> combinacoesIsosceles = new ArrayList<>();
-
-		int a = 1;
-		int b = 2;
-		int c = 2;
-
-		while (combinacoesIsosceles.size() != 15) {
-			combinacoesIsosceles.add(
-					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.ISOSCELES)
-			);
-			a++;
-			b++;
-			c++;
-		}
-
-		return combinacoesIsosceles;
+		// Then
+		then(tipoDeTrianguloAtual).isEqualTo(tipoDeTrianguloEsperado);
 	}
 
 	@Test
@@ -170,6 +113,78 @@ public class TipoDeTrianguloTeste {
 
 		// Then
 		then(tipoDeTrianguloAtual).isNull();
+	}
+
+	private static List<CombinacaoDeLados> criaCombinacoesEquilatero() {
+		List<CombinacaoDeLados> combinacoesEquilatero = new ArrayList<>();
+
+		int a = 1;
+		int b = 1;
+		int c = 1;
+
+		while (combinacoesEquilatero.size() != 15) {
+			combinacoesEquilatero.add(
+					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.EQUILATERO)
+			);
+			a++;
+			b++;
+			c++;
+		}
+
+		return combinacoesEquilatero;
+	}
+
+	private static List<CombinacaoDeLados> criaCombinacoesIsosceles() {
+		List<CombinacaoDeLados> combinacoesIsosceles = new ArrayList<>();
+
+		int a = 1;
+		int b = 2;
+		int c = 2;
+
+		while (combinacoesIsosceles.size() != 15) {
+			combinacoesIsosceles.add(
+					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.ISOSCELES)
+			);
+			a++;
+			b++;
+			c++;
+		}
+
+		return combinacoesIsosceles;
+	}
+
+	static Stream<CombinacaoDeLados> criaCombinacoes() {
+		List<CombinacaoDeLados> todasCombinacoes = new ArrayList<>();
+
+		List<CombinacaoDeLados> equilatero = criaCombinacoesEquilatero();
+		todasCombinacoes.addAll(equilatero);
+
+		List<CombinacaoDeLados> escaleno = criaCombinacoesEscaleno();
+		todasCombinacoes.addAll(escaleno);
+
+		List<CombinacaoDeLados> isosceles = criaCombinacoesIsosceles();
+		todasCombinacoes.addAll(isosceles);
+
+		return todasCombinacoes.stream();
+	}
+
+	private static List<CombinacaoDeLados> criaCombinacoesEscaleno() {
+		List<CombinacaoDeLados> combinacoesEscaleno = new ArrayList<>();
+
+		int a = 2;
+		int b = 3;
+		int c = 4;
+
+		while (combinacoesEscaleno.size() != 15) {
+			combinacoesEscaleno.add(
+					new CombinacaoDeLados(a, b, c, TipoDeTriangulo.ESCALENO)
+			);
+			a++;
+			b++;
+			c++;
+		}
+
+		return combinacoesEscaleno;
 	}
 
 }
